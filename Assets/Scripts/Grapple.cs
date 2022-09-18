@@ -8,10 +8,30 @@ public class Grapple : MonoBehaviour
     public LineRenderer _lineRenderer;
     public DistanceJoint2D _distanceJoint;
 
+    AudioManager audioManager;
+    LevelHandler levelHandler;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = GameObject.FindObjectOfType<AudioManager>();
+        levelHandler = GameObject.FindObjectOfType<LevelHandler>();
         _distanceJoint.enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "win")
+        {
+            levelHandler.winScreen.SetActive(true);
+        }
+
+        if (other.gameObject.tag == "Fire")
+        {
+            audioManager.gameoverAudio.Play();
+            levelHandler.gameoverScreen.SetActive(true);
+            Destroy(this);       
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +39,7 @@ public class Grapple : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            audioManager.grappleAudio.Play();
             Vector2 mousePos = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _lineRenderer.SetPosition(0, mousePos);
             _lineRenderer.SetPosition(1, transform.position);
