@@ -47,6 +47,7 @@ public class Grapple : MonoBehaviour
             _distanceJoint.enabled = true;
             _lineRenderer.enabled = true;
         }
+       
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             _distanceJoint.enabled = false;
@@ -56,6 +57,8 @@ public class Grapple : MonoBehaviour
         {
             _lineRenderer.SetPosition(1, transform.position);
         }
+
+        //Testing out to change web length at real time
         if (Input.GetKey(KeyCode.Mouse1))
         {
             _lineRenderer.SetPosition(1, new Vector3(transform.position.x, transform.position.y + 4, transform.position.z));

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Moving : BaseState
 {
-    private MovementSM _sm;
+    private PlayerControllerStateMachine _sm;
     private float _horizontalInput;
+    private float _verticalInput;
 
-    public Moving(MovementSM stateMachine) : base("Moving", stateMachine)
+    public Moving(PlayerControllerStateMachine stateMachine) : base("Moving", stateMachine)
     {
         _sm = stateMachine;
     }
@@ -16,6 +17,7 @@ public class Moving : BaseState
     {
         base.Enter();
         _horizontalInput = 0f;
+        _verticalInput = 0f;
     }
 
     public override void UpdateLogic()
@@ -24,6 +26,8 @@ public class Moving : BaseState
         _horizontalInput = Input.GetAxis("Horizontal");
         if (Mathf.Abs(_horizontalInput) < Mathf.Epsilon)
             stateMachine.ChangeState(_sm.idleState);
+        if (Mathf.Abs(_verticalInput) > Mathf.Epsilon)
+            stateMachine.ChangeState(_sm.jumpingState);
     }
 
     public override void UpdatePhysics()

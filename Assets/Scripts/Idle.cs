@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Idle : BaseState
 {
-    private MovementSM _sm;
+    private PlayerControllerStateMachine _sm;
     private float _horizontalInput;
 
-    public Idle(MovementSM stateMachine) : base("Idle", stateMachine)
+    public Idle(PlayerControllerStateMachine stateMachine) : base("Idle", stateMachine)
     {
         _sm = stateMachine;
     }

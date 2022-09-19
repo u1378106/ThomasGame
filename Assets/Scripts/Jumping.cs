@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Jumping : BaseState
 {
-    private MovementSM _sm;
+    private PlayerControllerStateMachine _sm;
     private float _verticalInput;
 
-    public Jumping(MovementSM stateMachine) : base("Jumping", stateMachine)
+    public Jumping(PlayerControllerStateMachine stateMachine) : base("Jumping", stateMachine)
     {
         _sm = stateMachine;
     }
@@ -23,15 +23,12 @@ public class Jumping : BaseState
         base.UpdateLogic();
         _verticalInput = Input.GetAxis("Vertical");
         if (Mathf.Abs(_verticalInput) < Mathf.Epsilon)
-            stateMachine.ChangeState(_sm.idleState);
+            stateMachine.ChangeState(_sm.movingState);
     }
 
     public override void UpdatePhysics()
     {
         base.UpdatePhysics();
-        //Vector2 vel = _sm.GetComponent<Rigidbody2D>().velocity;
-        //vel.x = _horizontalInput * _sm.speed;
-        //_sm.GetComponent<Rigidbody2D>().velocity = vel;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

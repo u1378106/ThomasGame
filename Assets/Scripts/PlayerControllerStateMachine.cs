@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementSM : StateMachine
+public class PlayerControllerStateMachine : StateMachine
 {
     [HideInInspector]
     public Idle idleState;
+
     [HideInInspector]
     public Moving movingState;
+
     [HideInInspector]
     public Jumping jumpingState;
 
