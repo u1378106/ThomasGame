@@ -29,8 +29,17 @@ public class Grapple : MonoBehaviour
         if (other.gameObject.tag == "Fire")
         {
             audioManager.gameoverAudio.Play();
+            audioManager.bgAudio.Stop();
             levelHandler.gameoverScreen.SetActive(true);
             Destroy(this);       
+        }
+
+        if (other.gameObject.tag == "DeathTrap")
+        {
+            audioManager.gameoverAudio.Play();
+            audioManager.bgAudio.Stop();
+            levelHandler.gameoverScreen.SetActive(true);
+            Destroy(this);
         }
     }
 

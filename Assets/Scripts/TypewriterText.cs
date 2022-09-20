@@ -41,6 +41,7 @@ public class TypewriterText: MonoBehaviour
 
 	public void StartGame()
     {
+		audioManager.typewriterAudio.Stop();
 		audioManager.bgAudio.Play();
 		this.transform.parent.gameObject.SetActive(false);
     }
