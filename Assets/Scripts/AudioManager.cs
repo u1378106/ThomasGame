@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource bgAudio, gameoverAudio, grappleAudio, buttonClickAudio;
+    public AudioSource bgAudio, gameoverAudio, grappleAudio, buttonClickAudio, typewriterAudio;
 
 }
